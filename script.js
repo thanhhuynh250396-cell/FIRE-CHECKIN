@@ -25,7 +25,16 @@ function startScanner() {
 
             scanner.stop();
 
-            result.innerHTML = "Đã quét: " + decodedText;
+            function(decodedText) {
+
+    scanner.stop();
+
+    document.getElementById("reader").style.display = "none";
+
+    result.innerHTML =
+        "✅ Đã đọc mã:<br><br><b>" + decodedText + "</b>";
+
+}
 
         },
         function(error) {
