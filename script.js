@@ -20,25 +20,27 @@ function startScanner() {
             fps: 10,
             qrbox: 250
         },
-        onScanSuccess,
-        function(error) {
+        function(decodedText) {
+
+            scanner.stop().then(function() {
+
+                reader.style.display = "none";
+
+                result.innerHTML =
+                    "✅ Đã đọc mã:<br><br><b>" + decodedText + "</b>";
+
+            });
+
+        },
+        function(errorMessage) {
             // Bỏ qua lỗi khi đang dò mã
         }
-    ).catch(function(err){
-        result.innerHTML = "❌ Không mở được camera<br>" + err;
-    });
-
-}
-
-function onScanSuccess(decodedText) {
-
-    scanner.stop().then(function () {
-
-        reader.style.display = "none";
+    ).catch(function(err) {
 
         result.innerHTML =
-            "✅ Đã đọc mã:<br><br><b>" + decodedText + "</b>";
+            "❌ Không mở được camera<br><br>" + err;
 
     });
 
 }
+
