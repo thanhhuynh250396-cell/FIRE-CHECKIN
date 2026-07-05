@@ -1,45 +1,44 @@
 const scanBtn = document.getElementById("scanBtn");
 const result = document.getElementById("result");
-
-scanBtn.addEventListener("click", startScanner);
+const reader = document.getElementById("reader");
 
 let scanner = null;
 
+scanBtn.addEventListener("click", startScanner);
+
 function startScanner() {
 
-    result.innerHTML = "Đang mở camera...";
+    result.innerHTML = "📷 Đang mở camera...";
 
-    document.getElementById("reader").style.display = "block";
+    reader.style.display = "block";
 
     scanner = new Html5Qrcode("reader");
 
     scanner.start(
-        {
-            facingMode: "environment"
-        },
+        { facingMode: "environment" },
         {
             fps: 10,
             qrbox: 250
         },
-        function(decodedText) {
-
-            scanner.stop();
-
-            function(decodedText) {
-
-    scanner.stop();
-
-    document.getElementById("reader").style.display = "none";
-
-    result.innerHTML =
-        "✅ Đã đọc mã:<br><br><b>" + decodedText + "</b>";
+        onScanSuccess,
+        function(error) {
+            // Bỏ qua lỗi khi đang dò mã
+        }
+    ).catch(function(err){
+        result.innerHTML = "❌ Không mở được camera<br>" + err;
+    });
 
 }
 
-        },
-        function(error) {
-            // Không cần xử lý
-        }
-    );
+function onScanSuccess(decodedText) {
+
+    scanner.stop().then(function () {
+
+        reader.style.display = "none";
+
+        result.innerHTML =
+            "✅ Đã đọc mã:<br><br><b>" + decodedText + "</b>";
+
+    });
 
 }
