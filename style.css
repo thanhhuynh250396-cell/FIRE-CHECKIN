@@ -1,0 +1,46 @@
+body{
+    margin:0;
+    padding:20px;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#ff5a1f;
+    margin-top:20px;
+}
+
+h2{
+    color:white;
+    font-weight:normal;
+    margin-bottom:30px;
+}
+
+#scanBtn{
+    width:100%;
+    max-width:350px;
+    padding:15px;
+    font-size:20px;
+    background:#ff5a1f;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#reader{
+    width:100%;
+    max-width:350px;
+    margin:25px auto;
+}
+
+#result{
+    margin-top:20px;
+    padding:15px;
+    background:#222;
+    border-radius:10px;
+    font-size:20px;
+    white-space:pre-line;
+}
